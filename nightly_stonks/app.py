@@ -1,4 +1,4 @@
-import valid_tickers as valid
+# import valid_tickers as valid
 import numpy as np
 import pandas as pd
 import datetime as dt
@@ -19,9 +19,11 @@ sub_reddits = reddit.subreddit('wallstreetbets')
 
 submission_statistics = []
 
+tickers = ["TSLA", "PTON", "CHWY", "PLTR"]
 
-def search_subreddit(stocks):
-    for ticker in stocks.tickers:
+
+def search_subreddit(stock_tickers):
+    for ticker in stock_tickers:
         for submission in reddit.subreddit('wallstreetbets').search(ticker, limit=130):
             if submission.domain != "self.wallstreetbets":
                 continue
@@ -43,4 +45,4 @@ def search_subreddit(stocks):
     dfSentimentStocks.to_csv('Reddit_Sentiment_Equity.csv', index=False)
 
 
-search_subreddit(valid)
+search_subreddit(tickers)
